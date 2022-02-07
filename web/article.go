@@ -137,7 +137,7 @@ func (h APIHandler) PostArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	article, err := h.ArticleRepository.SaveArticle(r.Context(),
+	article, err := h.ArticleRepository.SaveArticles(r.Context(),
 		input.Title,
 		input.Content,
 		input.Author,
