@@ -65,7 +65,7 @@ func init() {
 	var repo Repository
 	for i := 0; i < 10; i++ {
 		articleCreatedAt := time.Date(2010, 0, rand.Intn(365)*10, 0, 0, 0, 0, time.UTC)
-		a, err := repo.SaveArticle(context.TODO(), randomTitle(), randomArticle(), randomName(), articleCreatedAt)
+		a, err := repo.SaveArticles(context.TODO(), randomTitle(), randomArticle(), randomName(), articleCreatedAt)
 		if err != nil {
 			panic(err)
 		}

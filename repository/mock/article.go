@@ -22,7 +22,7 @@ func (repo Repository) GetAllArticle(ctx context.Context, id int64) (repository.
 	return repository.Article{}, repository.ErrArticleNotFound
 }
 
-func (repo Repository) SaveArticle(ctx context.Context, title, content, author string, createdAt time.Time) (repository.Article, error) {
+func (repo Repository) SaveArticles(ctx context.Context, title, content, author string, createdAt time.Time) (repository.Article, error) {
 	mu.Lock()
 	defer mu.Unlock()
 
