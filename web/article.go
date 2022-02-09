@@ -16,6 +16,7 @@ import (
 
 func (h APIHandler) GetArticleSummaries(w http.ResponseWriter, r *http.Request) {
 	articles, err := h.ArticleRepository.GetAllArticles(r.Context())
+	log.Println("aaa")
 	if err != nil {
 		log.Print(err)
 		InternalServerError(w)

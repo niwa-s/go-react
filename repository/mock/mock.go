@@ -23,18 +23,18 @@ var commentIDCounter int64 = 1
 var mockArticles []repository.Article
 var mockComments []repository.Comment
 
-func randomWord() string {
+func RandomWord() string {
 	return lorem[rand.Intn(len(lorem))]
 }
 
-func randomName() string {
-	return strings.Title(randomWord()) + " " + strings.Title(randomWord())
+func RandomName() string {
+	return strings.Title(RandomWord()) + " " + strings.Title(RandomWord())
 }
 
-func randomTitle() string {
+func RandomTitle() string {
 	words := make([]string, 3 + rand.Intn(3))
 	for i := range words {
-		words[i] = randomWord()
+		words[i] = RandomWord()
 	}
 	return strings.Title(strings.Join(words, " "))
 }
@@ -42,21 +42,21 @@ func randomTitle() string {
 func randomText() string {
 	words := make([]string, 6+rand.Intn(6))
 	for j := range words {
-		words[j] = randomWord()
+		words[j] = RandomWord()
 	}
 	return strings.Title(strings.Join(words, " ")) + "."
 }
-func randomParagraph() string {
+func RandomParagraph() string {
 	paragraph := make([]string, 7+rand.Intn(5))
 	for i := range paragraph {
 		paragraph[i] = randomText()
 	}
 	return strings.Join(paragraph, " ")
 }
-func randomArticle() string {
+func RandomArticle() string {
 	article := make([]string, 5+rand.Intn(3))
 	for i := range article {
-		article[i] = randomParagraph()
+		article[i] = RandomParagraph()
 	}
 	return strings.Join(article, "\n\n")
 }
@@ -65,14 +65,14 @@ func init() {
 	var repo Repository
 	for i := 0; i < 10; i++ {
 		articleCreatedAt := time.Date(2010, 0, rand.Intn(365)*10, 0, 0, 0, 0, time.UTC)
-		a, err := repo.SaveArticles(context.TODO(), randomTitle(), randomArticle(), randomName(), articleCreatedAt)
+		a, err := repo.SaveArticles(context.TODO(), RandomTitle(), RandomArticle(), RandomName(), articleCreatedAt)
 		if err != nil {
 			panic(err)
 		}
 
 		for j := 0; j < 2+rand.Intn(10); j++ {
 			commentCreatedAt := articleCreatedAt.Add(time.Duration(rand.Intn(365)) * 24 * time.Hour)
-			_, err := repo.SaveComment(context.TODO(), a.ID, randomName(), randomParagraph(), commentCreatedAt)
+			_, err := repo.SaveComment(context.TODO(), a.ID, RandomName(), RandomParagraph(), commentCreatedAt)
 			if err != nil {
 				panic(err)
 			}

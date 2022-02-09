@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: .
+    container_name: go-react
+    depends_on:
+      - postgres
+    ports:
+      - 8000:8000
+  postgres:
+    image: postgres
+    container_name:
+      react-go-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres:
